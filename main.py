@@ -160,7 +160,7 @@ while r_input('//>').lower() != "tayyor":
 print("Agar hammasi tayyor bo'lsa, bo'tni serverga joylimiza. faqat siz avtorizatsiyadan o'tishingiz kerak. Hozir link chiqadi va siz o'sha linkga kirib kod`ni copy qilib kelasiz. Keyin terminalga yozasiz. Ok?")
 r_input('>')
 log("serverga joylavommiza")
-os.system('google_appengine/appcfg.py -A '+ project_id + " update app_engine_installer/app_engine_project/app.yaml --noauth_local_webserver")
+os.system('google_appengine/appcfg.py -A '+ project_id + " update havo/app_engine_project/app.yaml --noauth_local_webserver")
 
 try:
     requests.get('https://' + project_id + ".appspot.com/set_webhook").text
@@ -168,10 +168,10 @@ try:
 except Exception as ex:
     log("serverga joylagandan keyingi muammo: " + str(ex))
     print("Server ishlamiyopti. Qandaydir hato bo'lgan. Qaytadan harakat qilinmoqda...")
-    os.system("google_appengine/appcfg.py set_default_version /app_engine_installer/app_engine_project --noauth_local_webserver")
-    os.system('google_appengine/appcfg.py -A '+ project_id + " update app_engine_installer/app_engine_project/app.yaml --noauth_local_webserver")
+    os.system("google_appengine/appcfg.py set_default_version /havo/app_engine_project --noauth_local_webserver")
+    os.system('google_appengine/appcfg.py -A '+ project_id + " update havo/app_engine_project/app.yaml --noauth_local_webserver")
 
-open("./upload_" + project_id + ".sh",'w').write('google_appengine/appcfg.py -A '+ project_id + " update app_engine_installer/app_engine_project/app.yaml --noauth_local_webserver") 
+open("./upload_" + project_id + ".sh",'w').write('google_appengine/appcfg.py -A '+ project_id + " update havo/app_engine_project/app.yaml --noauth_local_webserver") 
 print("kodga o'zgarishlar kiritganingizdan keyin upload_" + project_id + ".sh ni ishga tushirsangiz ham bo'ladi")
 
 print("Eslatma: --noauth_local_webserver degan narsani keyingi safardan yozish shart emas")
