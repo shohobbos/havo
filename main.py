@@ -143,14 +143,14 @@ while project_id == "":
 
 print("Fayllar sozlanmoqda...")
 log("fayllar sozlanmoqda")
-data = open('app_engine_installer/app_engine_project/app.yaml','r').read()
+data = open('havo/app_engine_project/app.yaml','r').read()
 data = data.replace('project_nomi', project_id)
-open('app_engine_installer/app_engine_project/app.yaml','w').write(data)
-data = open('app_engine_installer/app_engine_project/main.py','r').read()
+open('havo/app_engine_project/app.yaml','w').write(data)
+data = open('havo/app_engine_project/main.py','r').read()
 data = data.replace('project_nomi', project_id)
 data = data.replace('replace_me_with_token',API_TOKEN)
 data = data.replace('8768957689476', str(admin_id)).replace("88505037", '1')
-open('app_engine_installer/app_engine_project/main.py','w').write(data)
+open('havo/app_engine_project/main.py','w').write(data)
 log("fayllar sozlandi")
 
 print("Ok, ohiriga kelib qoldik. Bo't deyali tayyor. https://appengine.google.com saytiga kiring, yangi ochgan projectingizni tanlang. saytda tepada chap tomonda menyu bor. Menyuga kiring. Usha menyudan \033[95m APP ENGINE \033[0m ni tanlang.\n\nOchilgan stranitsada Choose language yoki Выбрать язык ni bosing. Pasda python ni belgisi chiqib keladi. Ushani tanlang. Karta chiqib kelganda Europe-West (Yevropa) ni tanlang. Pasda next ni bosing. Serverla tayyor bo'lishini kuting. tayyor bo'lganda esa, Tayyor dip yozing.")
@@ -160,7 +160,7 @@ while r_input('//>').lower() != "tayyor":
 print("Agar hammasi tayyor bo'lsa, bo'tni serverga joylimiza. faqat siz avtorizatsiyadan o'tishingiz kerak. Hozir link chiqadi va siz o'sha linkga kirib kod`ni copy qilib kelasiz. Keyin terminalga yozasiz. Ok?")
 r_input('>')
 log("serverga joylavommiza")
-os.system('google_appengine/appcfg.py -A '+ project_id + " update app_engine_installer/app_engine_project/app.yaml --noauth_local_webserver")
+os.system('google_appengine/appcfg.py -A '+ project_id + " update havo/app_engine_project/app.yaml --noauth_local_webserver")
 
 try:
     requests.get('https://' + project_id + ".appspot.com/set_webhook").text
@@ -168,10 +168,10 @@ try:
 except Exception as ex:
     log("serverga joylagandan keyingi muammo: " + str(ex))
     print("Server ishlamiyopti. Qandaydir hato bo'lgan. Qaytadan harakat qilinmoqda...")
-    os.system("google_appengine/appcfg.py set_default_version /app_engine_installer/app_engine_project --noauth_local_webserver")
-    os.system('google_appengine/appcfg.py -A '+ project_id + " update app_engine_installer/app_engine_project/app.yaml --noauth_local_webserver")
+    os.system("google_appengine/appcfg.py set_default_version /havo/app_engine_project --noauth_local_webserver")
+    os.system('google_appengine/appcfg.py -A '+ project_id + " update havo/app_engine_project/app.yaml --noauth_local_webserver")
 
-open("./upload_" + project_id + ".sh",'w').write('google_appengine/appcfg.py -A '+ project_id + " update app_engine_installer/app_engine_project/app.yaml --noauth_local_webserver") 
+open("./upload_" + project_id + ".sh",'w').write('google_appengine/appcfg.py -A '+ project_id + " update havo/app_engine_project/app.yaml --noauth_local_webserver") 
 print("kodga o'zgarishlar kiritganingizdan keyin upload_" + project_id + ".sh ni ishga tushirsangiz ham bo'ladi")
 
 print("Eslatma: --noauth_local_webserver degan narsani keyingi safardan yozish shart emas")
